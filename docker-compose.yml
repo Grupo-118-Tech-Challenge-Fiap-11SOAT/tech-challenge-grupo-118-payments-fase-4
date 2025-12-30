@@ -7,7 +7,7 @@ services:
     environment:
       ACCEPT_EULA: 'Y'
       MSSQL_SA_PASSWORD: 'Mssql!Passw0rd'
-    #restart: unless-stopped
+    restart: unless-stopped
     volumes:
       - mssql_data:/var/opt/mssql
 
@@ -20,6 +20,11 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: "http://*:5023"
       ConnectionStrings__DefaultConnection: "Data Source=db,1433;Database=payments;Integrated Security=false;User ID=sa;Password=Mssql!Passw0rd;TrustServerCertificate=true;Max Pool Size=200;Min Pool Size=10;Connection Timeout=30;"
+      MercadoPago__BaseUrl: "https://api.mercadopago.com"
+      MercadoPago__AccessToken: "TEST-5682763374989417-050719-e82307aaf8e2a1218fedc910c6e75726-407780263"
+      MercadoPago__UserId: "407780263"
+      MercadoPago__PosId: "POS01"
+      MercadoPago__NotificationUrl: "https://peaceful-flame-63.webhook.cool"
     ports:
       - "5023:5023"
     depends_on:
