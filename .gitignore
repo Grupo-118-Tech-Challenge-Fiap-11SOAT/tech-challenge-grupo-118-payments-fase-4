@@ -56,3 +56,6 @@ nunit-*.xml
 # AI Agents
 .claude
 CLAUDE.md
+
+# secrets
+.env
