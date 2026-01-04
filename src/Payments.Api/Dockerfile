@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS base
+USER $APP_UID
 WORKDIR /app
 RUN apk update && apk add wget
 RUN apk add --no-cache icu-libs icu-data-full tzdata ttf-opensans
