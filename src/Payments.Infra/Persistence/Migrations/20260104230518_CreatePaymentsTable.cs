@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Payments.Infra.Migrations
+namespace Payments.Infra.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class AddPaymentsTable : Migration
+    public partial class CreatePaymentsTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,6 +30,12 @@ namespace Payments.Infra.Migrations
                 {
                     table.PrimaryKey("PK_Payments", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payments_OrderId",
+                table: "Payments",
+                column: "OrderId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payments_Uuid",
