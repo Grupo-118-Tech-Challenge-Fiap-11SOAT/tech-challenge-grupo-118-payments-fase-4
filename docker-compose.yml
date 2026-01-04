@@ -21,10 +21,12 @@ services:
       ASPNETCORE_URLS: "http://*:5023"
       ConnectionStrings__DefaultConnection: "Data Source=db,1433;Database=payments;Integrated Security=false;User ID=sa;Password=Mssql!Passw0rd;TrustServerCertificate=true;Max Pool Size=200;Min Pool Size=10;Connection Timeout=30;"
       MercadoPago__BaseUrl: "https://api.mercadopago.com"
-      MercadoPago__AccessToken: "TEST-5682763374989417-050719-e82307aaf8e2a1218fedc910c6e75726-407780263"
-      MercadoPago__UserId: "407780263"
+      MercadoPago__AccessToken: "APP_USR-8106945416837627-123020-9aef454dbb1da76cd37267af358ceae7-2430042968"
+      MercadoPago__UserId: "2430042968"
       MercadoPago__PosId: "POS01"
       MercadoPago__NotificationUrl: "https://peaceful-flame-63.webhook.cool"
+      OrdersApi__BaseUrl: "https://bold-owl-40.webhook.cool"
+      OrdersApi__PaymentConfirmationEndpoint: "/orders/{orderId}/payment-confirmed"
     ports:
       - "5023:5023"
     depends_on:
