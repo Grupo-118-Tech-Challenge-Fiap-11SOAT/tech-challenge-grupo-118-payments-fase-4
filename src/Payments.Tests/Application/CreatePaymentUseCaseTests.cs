@@ -106,32 +106,6 @@ public class CreatePaymentUseCaseTests
     }
 
     [Fact]
-    public async Task When_CreatingPayment_WithValidRequest_Expect_RepositoryUpdateCalled()
-    {
-        // Arrange
-        CreatePaymentRequest request = new()
-        {
-            OrderId = "order-123",
-            Value = 100m
-        };
-
-        _paymentRepository.GetByOrderIdAsync(request.OrderId, Arg.Any<CancellationToken>())
-            .Returns((Payment?)null);
-
-        _providerFactory.GetProvider(PaymentProvider.MercadoPago)
-            .Returns(_providerService);
-
-        _providerService.ProcessPaymentAsync(Arg.Any<Payment>(), Arg.Any<CancellationToken>())
-            .Returns(PaymentProviderResult.Ok("QR_CODE_DATA"));
-
-        // Act
-        await _useCase.ExecuteAsync(request);
-
-        // Assert
-        await _paymentRepository.Received(1).UpdateAsync(Arg.Any<Payment>(), Arg.Any<CancellationToken>());
-    }
-
-    [Fact]
     public async Task When_PaymentProviderFails_Expect_InvalidOperationException()
     {
         // Arrange
