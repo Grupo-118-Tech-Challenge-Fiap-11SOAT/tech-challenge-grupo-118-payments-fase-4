@@ -13,8 +13,8 @@ services:
 
   api:
     build:
-      context: ./src
-      dockerfile: Payments.Api/Dockerfile
+      context: .
+      dockerfile: src/Payments.Api/Dockerfile
     container_name: payments-api
     environment:
       ASPNETCORE_ENVIRONMENT: Development
