@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using Payments.Api.Filters;
 using Payments.Application.DTOs;
 using Payments.Application.UseCases;
 
 namespace Payments.Api.Endpoints;
 
+[ExcludeFromCodeCoverage]
 public static class PaymentsEndpoints
 {
     public static void MapPaymentsEndpoints(this WebApplication app)

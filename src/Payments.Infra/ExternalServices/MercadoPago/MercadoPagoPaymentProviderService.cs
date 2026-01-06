@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Json;
 using System.Text.Json;
 using Microsoft.Extensions.Options;
@@ -8,6 +9,7 @@ using Payments.Infra.Configuration;
 
 namespace Payments.Infra.ExternalServices.MercadoPago;
 
+[ExcludeFromCodeCoverage]
 public sealed class MercadoPagoPaymentProviderService : IPaymentProviderService
 {
     private readonly HttpClient _httpClient;

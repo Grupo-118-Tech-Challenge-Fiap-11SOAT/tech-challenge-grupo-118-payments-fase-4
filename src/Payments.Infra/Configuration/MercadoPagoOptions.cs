@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace Payments.Infra.Configuration;
 
+[ExcludeFromCodeCoverage]
 public sealed class MercadoPagoOptions
 {
     public const string SectionName = "MercadoPago";

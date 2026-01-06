@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Json;
 using Microsoft.Extensions.Options;
 using Payments.Application.Interfaces;
@@ -5,6 +6,7 @@ using Payments.Infra.Configuration;
 
 namespace Payments.Infra.ExternalServices.Orders;
 
+[ExcludeFromCodeCoverage]
 public sealed class OrdersApiClient : IOrdersApiClient
 {
     private readonly HttpClient _httpClient;

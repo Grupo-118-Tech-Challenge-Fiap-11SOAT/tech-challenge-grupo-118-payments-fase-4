@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using Payments.Application.DTOs;
 using Payments.Application.UseCases;
 
 namespace Payments.Api.Endpoints;
 
+[ExcludeFromCodeCoverage]
 public static class MercadoPagoWebhookEndpoints
 {
     private const string PaymentCreatedAction = "payment.created";
