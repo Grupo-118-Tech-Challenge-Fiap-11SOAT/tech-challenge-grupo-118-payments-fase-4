@@ -1,0 +1,117 @@
+replicaCount: 1
+
+image:
+  repository: ${DOCKER_REGISTRY}
+  imageName: tech-challenge-grupo-118-payments-fase-4
+  tag: "${POC_IMAGE_TAG}"  # Will be set via --set or CI/CD
+  pullPolicy: IfNotPresent
+
+acrCredentials:
+  enabled: true
+  registry: "${DOCKER_REGISTRY}"
+  username: "${ACR_USERNAME}"  # Will be set via --set or CI/CD
+  password: "${ACR_PASSWORD}"  # Will be set via --set or CI/CD
+
+nameOverride: "tech-challenge-grupo-118-payments-fase-4"
+fullnameOverride: "tech-challenge-grupo-118-payments-fase-4"
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "tech-challenge-grupo-118-payments-fase-4-sa"
+
+service:
+  port: 80
+  instances:
+    - name: tech-challenge-grupo-118-payments-fase-4
+      type: ClusterIP
+      port: 80
+      targetPort: 8080
+      portName: http
+
+internalIngress:
+  enabled: true
+  className: "nginx-internal-static"
+  path: /payments-api(/|$)(.*)
+  pathType: ImplementationSpecific
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  tls: []
+
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+livenessProbe:
+  httpGet:
+    path: /health  
+    port: http
+  initialDelaySeconds: 90
+  periodSeconds: 30
+  timeoutSeconds: 30
+  successThreshold: 1
+  failureThreshold: 4
+readinessProbe:
+  httpGet:
+    path: /health  
+    port: http
+  initialDelaySeconds: 30
+  periodSeconds: 5
+  timeoutSeconds: 5
+  failureThreshold: 10
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 70
+
+volumes: []
+volumeMounts: []
+
+configMap:
+  enabled: false
+
+secret:
+  enabled: true
+  name: "tech-challenge-grupo-118-payments-fase-4"
+  annotations: {}
+  data:
+    #         STEPS: 2. Criação das chaves no secret, com os valores que foram mapeados dos segredos    
+    payments-db-connectionstring: "${ConnectionStrings__DefaultConnection}"    
+    payments-mercadopago-accesstoken: "${MercadoPago__AccessToken}"
+    payments-mercadopago-userid: "${MercadoPago__UserId}"
+    payments-mercadopago-posid: "${MercadoPago__PosId}"
+    payments-mercadopago-notificationurl: "${MercadoPago__NotificationUrl}"
+    payments-ordersapi-baseurl: "${OrdersApi__BaseUrl}"
+    payments-mercadopago-baseurl: "${MercadoPago__BaseUrl}"
+
+
+  #         STEPS: 3. Mapear as chaves dos segredos para variaveis de ambientes, no formato que o asp.net reconhece para sobrescrever as configs do json
+  envVars:  
+    - name: ConnectionStrings__DefaultConnection
+      secretKey: payments-db-connectionstring
+    - name: MercadoPago__AccessToken
+      secretKey: payments-mercadopago-accesstoken
+    - name: MercadoPago__UserId
+      secretKey: payments-mercadopago-userid
+    - name: MercadoPago__PosId
+      secretKey: payments-mercadopago-posid
+    - name: MercadoPago__NotificationUrl
+      secretKey: payments-mercadopago-notificationurl
+    - name: OrdersApi__BaseUrl
+      secretKey: payments-ordersapi-baseurl
+    - name: MercadoPago__BaseUrl
+      secretKey: payments-mercadopago-baseurl
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}  

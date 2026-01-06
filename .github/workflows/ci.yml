@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   ci:
-    uses: Grupo-118-Tech-Challenge-Fiap-11SOAT/terraform-template-pipeline-grupo118-fase-3/.github/workflows/dotnet-ci-template.yml@develop
+    uses: Grupo-118-Tech-Challenge-Fiap-11SOAT/terraform-template-pipeline-grupo118-fase-3/.github/workflows/dotnet-ci-template.yml@main
     with:
       sonar-project-key: "tech-challenge-grupo-118-payments-fase-4"
       sonar-organization: "grupo-118-tech-challenge-fiap-11soat"
