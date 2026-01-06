@@ -50,7 +50,7 @@ resources:
 
 livenessProbe:
   httpGet:
-    path: /healthz  
+    path: /health  
     port: http
   initialDelaySeconds: 90
   periodSeconds: 30
@@ -59,7 +59,7 @@ livenessProbe:
   failureThreshold: 4
 readinessProbe:
   httpGet:
-    path: /healthz  
+    path: /health  
     port: http
   initialDelaySeconds: 30
   periodSeconds: 5
