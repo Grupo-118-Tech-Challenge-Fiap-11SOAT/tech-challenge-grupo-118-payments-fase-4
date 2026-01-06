@@ -18,7 +18,7 @@ jobs:
       sonar-project-key: "tech-challenge-grupo-118-payments-fase-4"
       sonar-organization: "grupo-118-tech-challenge-fiap-11soat"
       solution-path: "./Payments.sln"
-      test-projects: "./src/Payments.Tests/Payments.Tests.csproj"
+      test-projects: "./Payments.sln"
       dotnet-version: "8.0.x"
       build-configuration: "Release"
       dockerfile-path: "./src/Payments.Api/Dockerfile"
