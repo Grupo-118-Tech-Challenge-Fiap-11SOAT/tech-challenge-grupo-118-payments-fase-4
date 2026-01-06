@@ -43,7 +43,7 @@ jobs:
 
         }
       # NotificationUrl configurada: https://grupo118fase3infraapim.azure-api.net/payments-api/payments/webhooks/mercado-pago
-      # OrdersApi__BaseUrl configurada: http://tech-challenge-grupo-118-orders-fase-4.default.svc.cluster.local
+      # OrdersApi__BaseUrl configurada: http://tech-challenge-grupo-118-orders-fase-4.default.svc.cluster.local.:80
       # MercadoPago__BaseUrl configurada: https://api.mercadopago.com
       variables_mapping: |
         {
