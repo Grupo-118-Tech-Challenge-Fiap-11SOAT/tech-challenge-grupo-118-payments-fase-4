@@ -23,6 +23,7 @@ bld/
 [Ll]og/
 [Ll]ogs/
 coverage/
+.idea
 
 # .NET Core
 project.lock.json
