@@ -41,7 +41,7 @@ public class SetupTestDependencies
     {
         var services = new ServiceCollection();
 
-        // Configuration properties
+        // Configuration properties.
         var configuration = new ConfigurationBuilder()
             .AddInMemoryCollection(new Dictionary<string, string?>
             {
