@@ -1,0 +1,51 @@
+name: CD Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: 'Image tag to deploy'
+        required: true
+      helm_chart_version:
+        description: 'Helm chart version to deploy'
+        required: true
+      helm_chart_name:
+        description: 'Field to insert the Helm Chart Name'
+        required: true
+        default: "grupo118fase4"
+      helm_release_name:
+        description: 'Field to define the release name'
+        required: true
+        default: 'tech-challenge-grupo-118-payments-fase-4'
+
+jobs:
+  deploy:
+    uses: Grupo-118-Tech-Challenge-Fiap-11SOAT/terraform-template-pipeline-grupo118-fase-3/.github/workflows/dotnet-cd-template.yml@main
+    secrets: inherit
+    with:
+      helm_chart_version: ${{ github.event.inputs.helm_chart_version }}
+      helm_chart_name: ${{ github.event.inputs.helm_chart_name }}
+      helm_values_file: "helm/values-production.yaml"
+      helm_release_name: ${{ github.event.inputs.helm_release_name }}
+      #         STEPS: 1. Mapear os segredos para as variaveis do helm, do jeito que api espera
+      secrets_mapping: |
+        {
+            "DOCKER_REGISTRY": "DOCKER_REGISTRY",
+            "ACR_USERNAME": "ACR_USERNAME",
+            "ACR_PASSWORD": "ACR_PASSWORD",
+            "ConnectionStrings__DefaultConnection": "GS_PAYMENTS_DATABASE_CONNECTION_STRING",
+            "MercadoPago__AccessToken": "GS_MERCADOPAGO_ACCESS_TOKEN",
+            "MercadoPago__UserId": "GS_MERCADOPAGO_USER_ID",
+            "MercadoPago__PosId": "GS_MERCADOPAGO_POS_ID",
+            "MercadoPago__NotificationUrl": "GS_MERCADOPAGO_NOTIFICATION_URL",
+            "OrdersApi__BaseUrl": "GS_ORDERS_API_BASE_URL",
+            "MercadoPago__BaseUrl": "GS_MERCADOPAGO_BASE_URL"
+
+        }
+      # NotificationUrl configurada: https://grupo118fase3infraapim.azure-api.net/payments-api/payments/webhooks/mercado-pago
+      # OrdersApi__BaseUrl configurada: http://tech-challenge-grupo-118-orders-fase-4.default.svc.cluster.local.:80
+      # MercadoPago__BaseUrl configurada: https://api.mercadopago.com
+      variables_mapping: |
+        {
+          "POC_IMAGE_TAG": "${{ github.event.inputs.image_tag }}",
+        }

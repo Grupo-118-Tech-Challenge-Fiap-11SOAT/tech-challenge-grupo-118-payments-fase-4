@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+**/.git
+**/.vs
+**/.vscode
+**/.idea
+**/coverage/
+**/TestResults/
+**/*.user
+**/*.suo
+**/node_modules/
+**/.DS_Store
+**/Thumbs.db

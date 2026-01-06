@@ -6,20 +6,27 @@ services:
       - "1433:1433"
     environment:
       ACCEPT_EULA: 'Y'
-      MSSQL_SA_PASSWORD: 'Mssql!Passw0rd'
-    #restart: unless-stopped
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD}
+    restart: unless-stopped
     volumes:
       - mssql_data:/var/opt/mssql
 
   api:
     build:
-      context: ./src
-      dockerfile: Payments.Api/Dockerfile
+      context: .
+      dockerfile: src/Payments.Api/Dockerfile
     container_name: payments-api
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: "http://*:5023"
-      ConnectionStrings__DefaultConnection: "Data Source=db,1433;Database=payments;Integrated Security=false;User ID=sa;Password=Mssql!Passw0rd;TrustServerCertificate=true;Max Pool Size=200;Min Pool Size=10;Connection Timeout=30;"
+      ConnectionStrings__DefaultConnection: ${ConnectionStrings__DefaultConnection}
+      MercadoPago__BaseUrl: ${MercadoPago__BaseUrl}
+      MercadoPago__AccessToken: ${MercadoPago__AccessToken}
+      MercadoPago__UserId: ${MercadoPago__UserId}
+      MercadoPago__PosId: ${MercadoPago__PosId}
+      MercadoPago__NotificationUrl: ${MercadoPago__NotificationUrl}
+      OrdersApi__BaseUrl: ${OrdersApi__BaseUrl}
+      OrdersApi__PaymentConfirmationEndpoint: ${OrdersApi__PaymentConfirmationEndpoint}
     ports:
       - "5023:5023"
     depends_on:

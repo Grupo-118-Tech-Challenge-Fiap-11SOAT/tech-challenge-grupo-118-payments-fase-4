@@ -1,0 +1,9 @@
+{
+  "nodes": {
+    "reqnroll": {
+      "bindingAssemblies": [
+        { "assembly": "Payments.Tests.Bdd" }
+      ]
+    }
+  }
+}

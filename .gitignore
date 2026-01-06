@@ -22,6 +22,8 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+coverage/
+.idea
 
 # .NET Core
 project.lock.json
@@ -52,3 +54,13 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# AI Agents
+.claude
+CLAUDE.md
+
+# secrets
+.env
+
+# Specflow auto generated files
+*.feature.cs
