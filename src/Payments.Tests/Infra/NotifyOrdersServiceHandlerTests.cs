@@ -38,7 +38,7 @@ public class NotifyOrdersServiceHandlerTests
     }
 
     [Fact]
-    public async Task When_OrdersApiClientThrows_Expect_ExceptionPropagated()
+    public async Task When_OrdersApiClientThrows_Expect_ExceptionNotPropagated()
     {
         // Arrange
         long paymentId = 12345;
@@ -47,7 +47,8 @@ public class NotifyOrdersServiceHandlerTests
             .NotifyPaymentApprovedAsync(Arg.Any<string>(), Arg.Any<long>(), Arg.Any<CancellationToken>())
             .ThrowsAsync(new HttpRequestException("Connection refused"));
 
-        // Act & Assert
-        await Assert.ThrowsAsync<HttpRequestException>(() => _handler.HandleAsync(@event));
+        // Act & Assert - should not throw
+        Exception? exception = await Record.ExceptionAsync(() => _handler.HandleAsync(@event));
+        Assert.Null(exception);
     }
 }

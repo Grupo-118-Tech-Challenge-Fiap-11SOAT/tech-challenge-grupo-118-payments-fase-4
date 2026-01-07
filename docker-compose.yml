@@ -17,7 +17,6 @@ services:
       dockerfile: src/Payments.Api/Dockerfile
     container_name: payments-api
     environment:
-      ASPNETCORE_ENVIRONMENT: Production
       ConnectionStrings__DefaultConnection: ${ConnectionStrings__DefaultConnection}
       MercadoPago__BaseUrl: ${MercadoPago__BaseUrl}
       MercadoPago__AccessToken: ${MercadoPago__AccessToken}

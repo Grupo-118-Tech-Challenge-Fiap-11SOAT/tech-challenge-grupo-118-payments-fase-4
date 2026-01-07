@@ -47,5 +47,5 @@ jobs:
       # MercadoPago__BaseUrl configurada: https://api.mercadopago.com
       variables_mapping: |
         {
-          "POC_IMAGE_TAG": "${{ github.event.inputs.image_tag }}",
+          "POC_IMAGE_TAG": "${{ github.event.inputs.image_tag }}"
         }

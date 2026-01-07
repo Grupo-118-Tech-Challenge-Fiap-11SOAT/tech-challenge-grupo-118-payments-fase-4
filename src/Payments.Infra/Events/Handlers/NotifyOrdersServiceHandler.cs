@@ -41,7 +41,6 @@ public sealed class NotifyOrdersServiceHandler : IEventHandler<PaymentApprovedEv
                 "Failed to notify Orders service. OrderId: {OrderId}, PaymentId: {PaymentId}",
                 @event.OrderId,
                 @event.PaymentId);
-            throw;
         }
     }
 }
