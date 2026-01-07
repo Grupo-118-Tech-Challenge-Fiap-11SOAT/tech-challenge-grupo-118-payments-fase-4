@@ -72,16 +72,13 @@ using (var scope = app.Services.CreateScope())
     await db.Database.MigrateAsync();
 }
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(s =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(s =>
-    {
-        s.SwaggerEndpoint("../swagger/v1/swagger.json", "Tech Challenge - Payments API");
-        s.RoutePrefix = string.Empty;
-        s.DocumentTitle = "Tech Challenge - Payments API - Fase 4 | Swagger";
-    });
-}
+    s.SwaggerEndpoint("../swagger/v1/swagger.json", "Tech Challenge - Payments API");
+    s.RoutePrefix = string.Empty;
+    s.DocumentTitle = "Tech Challenge - Payments API - Fase 4 | Swagger";
+});
 
 app.MapGet("/health", () => Results.Ok(new { status = "ok" }))
    .WithName("Health").WithTags("Health");
