@@ -24,4 +24,5 @@ RUN dotnet publish "Payments.Api.csproj" -c Release -o /app --no-restore
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
+EXPOSE 8080
 ENTRYPOINT ["dotnet", "Payments.Api.dll"]

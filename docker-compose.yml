@@ -17,8 +17,7 @@ services:
       dockerfile: src/Payments.Api/Dockerfile
     container_name: payments-api
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: "http://*:5023"
+      ASPNETCORE_ENVIRONMENT: Production
       ConnectionStrings__DefaultConnection: ${ConnectionStrings__DefaultConnection}
       MercadoPago__BaseUrl: ${MercadoPago__BaseUrl}
       MercadoPago__AccessToken: ${MercadoPago__AccessToken}
@@ -28,7 +27,7 @@ services:
       OrdersApi__BaseUrl: ${OrdersApi__BaseUrl}
       OrdersApi__PaymentConfirmationEndpoint: ${OrdersApi__PaymentConfirmationEndpoint}
     ports:
-      - "5023:5023"
+      - "5023:8080"
     depends_on:
       - db
 
