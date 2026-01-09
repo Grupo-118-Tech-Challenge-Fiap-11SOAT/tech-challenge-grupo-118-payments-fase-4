@@ -6,6 +6,9 @@ image:
   tag: "${POC_IMAGE_TAG}"  # Will be set via --set or CI/CD
   pullPolicy: IfNotPresent
 
+imagePullSecrets:
+  - name: tech-challenge-grupo-118-payments-fase-4-acr-secret
+
 acrCredentials:
   enabled: true
   registry: "${DOCKER_REGISTRY}"
