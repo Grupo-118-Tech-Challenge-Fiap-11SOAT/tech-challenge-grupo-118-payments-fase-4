@@ -110,6 +110,8 @@ secret:
       secretKey: payments-ordersapi-baseurl
     - name: MercadoPago__BaseUrl
       secretKey: payments-mercadopago-baseurl
+    - name: OrdersApi__PaymentConfirmationEndpoint
+      secretKey: payments-ordersapi-paymentconfirmationendpoint
 
 nodeSelector: {}
 
