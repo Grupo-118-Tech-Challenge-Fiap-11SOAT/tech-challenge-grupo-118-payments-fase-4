@@ -32,7 +32,7 @@ public sealed class OrdersApiClient : IOrdersApiClient
             confirmedAt = DateTime.UtcNow
         };
 
-        HttpResponseMessage response = await _httpClient.PostAsJsonAsync(endpoint, payload, cancellationToken);
+        HttpResponseMessage response = await _httpClient.PatchAsync(endpoint, null, cancellationToken);
         response.EnsureSuccessStatusCode();
     }
 }
