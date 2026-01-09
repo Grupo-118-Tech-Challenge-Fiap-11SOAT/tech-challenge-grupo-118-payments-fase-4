@@ -91,6 +91,7 @@ secret:
     payments-mercadopago-notificationurl: "${MercadoPago__NotificationUrl}"
     payments-ordersapi-baseurl: "${OrdersApi__BaseUrl}"
     payments-mercadopago-baseurl: "${MercadoPago__BaseUrl}"
+    payments-ordersapi-paymentconfirmationendpoint: "${OrdersApi__PaymentConfirmationEndpoint}"
 
 
   #         STEPS: 3. Mapear as chaves dos segredos para variaveis de ambientes, no formato que o asp.net reconhece para sobrescrever as configs do json
@@ -109,6 +110,8 @@ secret:
       secretKey: payments-ordersapi-baseurl
     - name: MercadoPago__BaseUrl
       secretKey: payments-mercadopago-baseurl
+    - name: OrdersApi__PaymentConfirmationEndpoint
+      secretKey: payments-ordersapi-paymentconfirmationendpoint
 
 nodeSelector: {}
 
