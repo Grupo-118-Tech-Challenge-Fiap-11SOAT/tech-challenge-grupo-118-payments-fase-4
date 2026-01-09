@@ -25,14 +25,7 @@ public sealed class OrdersApiClient : IOrdersApiClient
     {
         string endpoint = _options.PaymentConfirmationEndpoint.Replace("{orderId}", orderId);
 
-        var payload = new
-        {
-            paymentId,
-            status = "approved",
-            confirmedAt = DateTime.UtcNow
-        };
-
-        HttpResponseMessage response = await _httpClient.PostAsJsonAsync(endpoint, payload, cancellationToken);
+        HttpResponseMessage response = await _httpClient.PatchAsync(endpoint, null, cancellationToken);
         response.EnsureSuccessStatusCode();
     }
 }
