@@ -39,7 +39,8 @@ jobs:
             "MercadoPago__PosId": "GS_MERCADOPAGO_POS_ID",
             "MercadoPago__NotificationUrl": "GS_MERCADOPAGO_NOTIFICATION_URL",
             "OrdersApi__BaseUrl": "GS_ORDERS_API_BASE_URL",
-            "MercadoPago__BaseUrl": "GS_MERCADOPAGO_BASE_URL"
+            "MercadoPago__BaseUrl": "GS_MERCADOPAGO_BASE_URL",
+            "OrdersApi__PaymentConfirmationEndpoint": "GS_ORDERS_API_PAYMENT_CONFIRMATION_ENDPOINT"
 
         }
       # NotificationUrl configurada: https://grupo118fase3infraapim.azure-api.net/payments-api/payments/webhooks/mercado-pago
